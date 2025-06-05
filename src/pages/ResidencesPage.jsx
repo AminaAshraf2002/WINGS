@@ -37,6 +37,11 @@ const ResidencesPage = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [showFloorPlan, setShowFloorPlan] = useState(false);
 
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   // Initialize animations to trigger from top
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -74,6 +79,11 @@ const ResidencesPage = () => {
 
     return () => observer.disconnect();
   }, []);
+
+  // Reset image index when unit changes
+  useEffect(() => {
+    setCurrentImageIndex(0);
+  }, [selectedUnit]);
 
   // Residence data
   const residenceTypes = {
@@ -147,6 +157,22 @@ const ResidencesPage = () => {
     setCurrentImageIndex((prev) => (prev - 1 + currentUnit.images.length) % currentUnit.images.length);
   };
 
+  // Handle keyboard navigation for gallery
+  useEffect(() => {
+    const handleKeyPress = (e) => {
+      if (e.key === 'ArrowLeft') {
+        prevImage();
+      } else if (e.key === 'ArrowRight') {
+        nextImage();
+      } else if (e.key === 'Escape' && showFloorPlan) {
+        setShowFloorPlan(false);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, [currentUnit.images.length, showFloorPlan]);
+
   return (
     <div className="residences-page">
       <Header />
@@ -171,12 +197,14 @@ const ResidencesPage = () => {
             <button
               onClick={() => setSelectedUnit('1bhk')}
               className={`tab-button ${selectedUnit === '1bhk' ? 'active' : ''}`}
+              aria-pressed={selectedUnit === '1bhk'}
             >
               1 BHK Apartments
             </button>
             <button
               onClick={() => setSelectedUnit('2bhk')}
               className={`tab-button ${selectedUnit === '2bhk' ? 'active' : ''}`}
+              aria-pressed={selectedUnit === '2bhk'}
             >
               2 BHK Apartments
             </button>
@@ -191,13 +219,14 @@ const ResidencesPage = () => {
               <div className="gallery-main">
                 <img
                   src={currentUnit.images[currentImageIndex]}
-                  alt={currentUnit.title}
+                  alt={`${currentUnit.title} - Image ${currentImageIndex + 1}`}
                   className="gallery-image"
                 />
                 <button
                   onClick={prevImage}
                   className="gallery-nav prev"
                   aria-label="Previous image"
+                  disabled={currentUnit.images.length <= 1}
                 >
                   <ChevronLeft size={18} />
                 </button>
@@ -205,6 +234,7 @@ const ResidencesPage = () => {
                   onClick={nextImage}
                   className="gallery-nav next"
                   aria-label="Next image"
+                  disabled={currentUnit.images.length <= 1}
                 >
                   <ChevronRight size={18} />
                 </button>
@@ -227,8 +257,9 @@ const ResidencesPage = () => {
                     key={index}
                     onClick={() => setCurrentImageIndex(index)}
                     className={`thumbnail ${index === currentImageIndex ? 'active' : ''}`}
+                    aria-label={`View image ${index + 1}`}
                   >
-                    <img src={image} alt="" />
+                    <img src={image} alt={`Thumbnail ${index + 1}`} />
                   </button>
                 ))}
                 <button
@@ -273,7 +304,10 @@ const ResidencesPage = () => {
                   <Calendar size={16} />
                   <span>Book Site Visit</span>
                 </button>
-                <button className="action-button secondary">
+                <button 
+                  className="action-button secondary"
+                  onClick={() => setShowFloorPlan(true)}
+                >
                   <Download size={16} />
                   <span>Floor Plan</span>
                 </button>
@@ -284,10 +318,16 @@ const ResidencesPage = () => {
 
         {/* Floor Plan Modal */}
         {showFloorPlan && (
-          <div className="modal-overlay" onClick={() => setShowFloorPlan(false)}>
+          <div 
+            className="modal-overlay" 
+            onClick={() => setShowFloorPlan(false)}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modal-title"
+          >
             <div className="modal-content" onClick={(e) => e.stopPropagation()}>
               <div className="modal-header">
-                <h3 className="modal-title">{currentUnit.title} - Floor Plan</h3>
+                <h3 id="modal-title" className="modal-title">{currentUnit.title} - Floor Plan</h3>
                 <button
                   onClick={() => setShowFloorPlan(false)}
                   className="modal-close"
@@ -299,7 +339,7 @@ const ResidencesPage = () => {
               <div className="modal-body">
                 <img
                   src={currentUnit.floorPlan}
-                  alt="Floor Plan"
+                  alt={`${currentUnit.title} Floor Plan`}
                   className="floorplan-image"
                 />
               </div>

@@ -32,6 +32,11 @@ const GalleryPage = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   // Initialize animations
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -70,48 +75,48 @@ const GalleryPage = () => {
       category: 'exterior',
       title: 'Building Exterior',
       description: 'Modern senior living community architecture',
-      src: exteriorImage,
-      thumbnail: exteriorImage
+      src: exteriorImage || "https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=800&h=600&fit=crop",
+      thumbnail: exteriorImage || "https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=400&h=300&fit=crop"
     },
     {
       id: 2,
       category: 'apartments',
       title: 'Luxury Apartments',
       description: 'Comfortable and modern living spaces',
-      src: apartmentsImage,
-      thumbnail: apartmentsImage
+      src: apartmentsImage || "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop",
+      thumbnail: apartmentsImage || "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&h=300&fit=crop"
     },
     {
       id: 3,
       category: 'amenities',
       title: 'Premium Amenities',
       description: 'World-class facilities for senior citizens',
-      src: amenitiesImage,
-      thumbnail: amenitiesImage
+      src: amenitiesImage || "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=600&fit=crop",
+      thumbnail: amenitiesImage || "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop"
     },
     {
       id: 4,
       category: 'dining',
       title: 'Dining Services',
       description: 'Nutritious meals and dining facilities',
-      src: diningImage,
-      thumbnail: diningImage
+      src: diningImage || "https://images.unsplash.com/photo-1555244162-803834f70033?w=800&h=600&fit=crop",
+      thumbnail: diningImage || "https://images.unsplash.com/photo-1555244162-803834f70033?w=400&h=300&fit=crop"
     },
     {
       id: 5,
       category: 'recreation',
       title: 'Recreation Activities',
       description: 'Engaging activities and social programs',
-      src: recreationImage,
-      thumbnail: recreationImage
+      src: recreationImage || "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=800&h=600&fit=crop",
+      thumbnail: recreationImage || "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=400&h=300&fit=crop"
     },
     {
       id: 6,
       category: 'garden',
       title: 'Beautiful Gardens',
       description: 'Peaceful outdoor spaces and landscaping',
-      src: gardenImage,
-      thumbnail: gardenImage
+      src: gardenImage || "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&h=600&fit=crop",
+      thumbnail: gardenImage || "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&h=300&fit=crop"
     }
   ];
 
@@ -153,7 +158,15 @@ const GalleryPage = () => {
 
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [selectedImage, currentImageIndex]);
+  }, [selectedImage, currentImageIndex, filteredImages.length]);
+
+  // Reset current image index when category changes
+  useEffect(() => {
+    setCurrentImageIndex(0);
+    if (selectedImage && !filteredImages.some(img => img.id === selectedImage.id)) {
+      closeImageModal();
+    }
+  }, [selectedCategory, filteredImages, selectedImage]);
 
   // Handle download
   const handleDownload = () => {
@@ -183,8 +196,20 @@ const GalleryPage = () => {
       }
     } else {
       // Fallback: copy to clipboard
-      navigator.clipboard.writeText(window.location.href);
-      alert('Link copied to clipboard!');
+      try {
+        await navigator.clipboard.writeText(window.location.href);
+        alert('Link copied to clipboard!');
+      } catch (err) {
+        console.log('Error copying to clipboard:', err);
+        // Fallback for older browsers
+        const textArea = document.createElement('textarea');
+        textArea.value = window.location.href;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        alert('Link copied to clipboard!');
+      }
     }
   };
 
@@ -215,6 +240,7 @@ const GalleryPage = () => {
                   key={category.id}
                   onClick={() => setSelectedCategory(category.id)}
                   className={`filter-button ${selectedCategory === category.id ? 'active' : ''}`}
+                  aria-pressed={selectedCategory === category.id}
                 >
                   <IconComponent size={18} />
                   <span>{category.name}</span>
@@ -231,6 +257,15 @@ const GalleryPage = () => {
               key={image.id}
               className="gallery-item"
               onClick={() => openImageModal(image, index)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  openImageModal(image, index);
+                }
+              }}
+              aria-label={`View ${image.title}`}
             >
               <div className="image-container">
                 <img
@@ -238,13 +273,16 @@ const GalleryPage = () => {
                   alt={image.title}
                   className="gallery-image"
                   loading="lazy"
+                  onError={(e) => {
+                    e.target.src = `https://images.unsplash.com/photo-156001840${image.id}?w=400&h=300&fit=crop`;
+                  }}
                 />
                 <div className="image-overlay">
                   <div className="overlay-content">
                     <h3 className="image-title">{image.title}</h3>
                     <p className="image-description">{image.description}</p>
                     <div className="overlay-actions">
-                      <button className="action-btn">
+                      <button className="action-btn" aria-label="View image">
                         <Camera size={16} />
                       </button>
                     </div>
@@ -266,11 +304,17 @@ const GalleryPage = () => {
 
         {/* Image Modal */}
         {selectedImage && (
-          <div className="image-modal" onClick={closeImageModal}>
+          <div 
+            className="image-modal" 
+            onClick={closeImageModal}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modal-title"
+          >
             <div className="modal-content" onClick={(e) => e.stopPropagation()}>
               <div className="modal-header">
                 <div className="modal-info">
-                  <h3 className="modal-title">{selectedImage.title}</h3>
+                  <h3 id="modal-title" className="modal-title">{selectedImage.title}</h3>
                   <p className="modal-description">{selectedImage.description}</p>
                 </div>
                 <div className="modal-actions">
@@ -278,6 +322,7 @@ const GalleryPage = () => {
                     className="modal-action-btn" 
                     onClick={handleDownload}
                     title="Download"
+                    aria-label="Download image"
                   >
                     <Download size={18} />
                   </button>
@@ -285,6 +330,7 @@ const GalleryPage = () => {
                     className="modal-action-btn" 
                     onClick={handleShare}
                     title="Share"
+                    aria-label="Share image"
                   >
                     <Share2 size={18} />
                   </button>
@@ -292,6 +338,7 @@ const GalleryPage = () => {
                     className="modal-close" 
                     onClick={closeImageModal} 
                     title="Close"
+                    aria-label="Close modal"
                   >
                     <X size={18} />
                   </button>
@@ -303,6 +350,9 @@ const GalleryPage = () => {
                   src={selectedImage.src}
                   alt={selectedImage.title}
                   className="modal-image"
+                  onError={(e) => {
+                    e.target.src = `https://images.unsplash.com/photo-156001840${selectedImage.id}?w=800&h=600&fit=crop`;
+                  }}
                 />
                 
                 {filteredImages.length > 1 && (
@@ -311,6 +361,7 @@ const GalleryPage = () => {
                       className="modal-nav prev"
                       onClick={() => navigateImage('prev')}
                       title="Previous image"
+                      aria-label="Previous image"
                     >
                       <ChevronLeft size={24} />
                     </button>
@@ -319,6 +370,7 @@ const GalleryPage = () => {
                       className="modal-nav next"
                       onClick={() => navigateImage('next')}
                       title="Next image"
+                      aria-label="Next image"
                     >
                       <ChevronRight size={24} />
                     </button>

@@ -20,6 +20,11 @@ const TestimonialsPage = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [autoPlay, setAutoPlay] = useState(true);
 
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   // Testimonials data - moved to top to ensure it's available immediately
   const testimonials = [
     {
@@ -108,6 +113,23 @@ const TestimonialsPage = () => {
     return () => observer.disconnect();
   }, []);
 
+  // Handle keyboard navigation
+  useEffect(() => {
+    const handleKeyPress = (e) => {
+      if (e.key === 'ArrowLeft') {
+        prevTestimonial();
+      } else if (e.key === 'ArrowRight') {
+        nextTestimonial();
+      } else if (e.key === ' ') {
+        e.preventDefault();
+        setAutoPlay(!autoPlay);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, [autoPlay]);
+
   const nextTestimonial = () => {
     setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
     setAutoPlay(false);
@@ -121,15 +143,15 @@ const TestimonialsPage = () => {
   const goToTestimonial = (index) => {
     setCurrentTestimonial(index);
     setAutoPlay(false);
+    // Scroll to carousel smoothly
+    const carousel = document.querySelector('.wings-testimonial-carousel');
+    if (carousel) {
+      carousel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
   };
 
   // Get current testimonial data safely
   const currentTestimonialData = testimonials[currentTestimonial] || testimonials[0];
-
-  // Debug logging
-  console.log('Current testimonial index:', currentTestimonial);
-  console.log('Current testimonial data:', currentTestimonialData);
-  console.log('Total testimonials:', testimonials.length);
 
   return (
     <div className="wings-testimonials-page">
@@ -208,6 +230,17 @@ const TestimonialsPage = () => {
                 <ChevronLeft size={16} />
               </button>
               
+              <div className="wings-carousel-controls">
+                <button
+                  className={`wings-play-pause-btn ${autoPlay ? 'playing' : 'paused'}`}
+                  onClick={() => setAutoPlay(!autoPlay)}
+                  aria-label={autoPlay ? 'Pause auto-play' : 'Resume auto-play'}
+                  type="button"
+                >
+                  {autoPlay ? '⏸️' : '▶️'}
+                </button>
+              </div>
+              
               <button 
                 className="wings-nav-button wings-next" 
                 onClick={nextTestimonial}
@@ -229,6 +262,11 @@ const TestimonialsPage = () => {
                   aria-label={`Go to testimonial ${index + 1}`}
                 />
               ))}
+            </div>
+
+            {/* Instructions */}
+            <div className="wings-carousel-instructions">
+              <p>Use arrow keys to navigate • Space to pause/play</p>
             </div>
           </div>
         </section>
@@ -293,7 +331,7 @@ const TestimonialsPage = () => {
                         src={testimonial.avatar} 
                         alt={testimonial.name}
                         onError={(e) => {
-                          e.target.src = `https://ui-avatars.com/api/?name=${testimonial.name}&background=0d9488&color=fff`;
+                          e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(testimonial.name)}&background=0d9488&color=fff`;
                         }}
                       />
                     </div>

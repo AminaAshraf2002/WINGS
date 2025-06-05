@@ -26,6 +26,11 @@ const FAQPage = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [openFAQ, setOpenFAQ] = useState(null);
 
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   // Initialize animations
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -44,6 +49,18 @@ const FAQPage = () => {
     });
 
     return () => observer.disconnect();
+  }, []);
+
+  // Handle keyboard navigation for FAQ items
+  useEffect(() => {
+    const handleKeyPress = (e) => {
+      if (e.key === 'Escape') {
+        setOpenFAQ(null);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
   }, []);
 
   // FAQ Categories
@@ -166,7 +183,42 @@ const FAQPage = () => {
   const clearSearch = () => {
     setSearchTerm('');
     setSelectedCategory('all');
+    setOpenFAQ(null); // Close any open FAQ when clearing
   };
+
+  // Handle contact actions
+  const handleCall = () => {
+    window.location.href = 'tel:+918590943300';
+  };
+
+  const handleWhatsApp = () => {
+    const message = encodeURIComponent('Hi! I have a question about WINGS Senior Living.');
+    window.open(`https://wa.me/918590943300?text=${message}`, '_blank');
+  };
+
+  const handleVisit = () => {
+    // You can replace this with your actual booking system URL
+    window.open('https://maps.google.com/?q=PS+Mission+Hospital+Kochi', '_blank');
+  };
+
+  // URL parameters for deep linking to specific FAQ
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const faqId = urlParams.get('faq');
+    if (faqId) {
+      const faqIdNumber = parseInt(faqId, 10);
+      if (faqData.find(faq => faq.id === faqIdNumber)) {
+        setOpenFAQ(faqIdNumber);
+        // Scroll to the FAQ item after a short delay
+        setTimeout(() => {
+          const faqElement = document.querySelector(`[data-faq-id="${faqIdNumber}"]`);
+          if (faqElement) {
+            faqElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }, 300);
+      }
+    }
+  }, []);
 
   return (
     <div className="wings-faq-page">
@@ -196,9 +248,14 @@ const FAQPage = () => {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="wings-search-input"
+                aria-label="Search FAQs"
               />
               {searchTerm && (
-                <button onClick={clearSearch} className="wings-clear-search">
+                <button 
+                  onClick={clearSearch} 
+                  className="wings-clear-search"
+                  aria-label="Clear search"
+                >
                   ✕
                 </button>
               )}
@@ -215,6 +272,7 @@ const FAQPage = () => {
                     key={category.id}
                     onClick={() => setSelectedCategory(category.id)}
                     className={`wings-filter-button ${selectedCategory === category.id ? 'wings-active' : ''}`}
+                    aria-pressed={selectedCategory === category.id}
                   >
                     <IconComponent size={16} />
                     <span>{category.name}</span>
@@ -234,6 +292,11 @@ const FAQPage = () => {
               <>Showing all {filteredFAQs.length} frequently asked questions</>
             )}
           </p>
+          {(searchTerm || selectedCategory !== 'all') && (
+            <button onClick={clearSearch} className="wings-clear-all-filters">
+              Clear all filters
+            </button>
+          )}
         </div>
 
         {/* FAQ List */}
@@ -244,11 +307,13 @@ const FAQPage = () => {
                 key={faq.id} 
                 className="wings-faq-item animate-on-scroll"
                 style={{ animationDelay: `${index * 0.1}s` }}
+                data-faq-id={faq.id}
               >
                 <button
                   onClick={() => toggleFAQ(faq.id)}
                   className="wings-faq-question"
                   aria-expanded={openFAQ === faq.id}
+                  aria-controls={`faq-answer-${faq.id}`}
                 >
                   <span className="wings-question-text">{faq.question}</span>
                   <div className="wings-question-icon">
@@ -260,7 +325,12 @@ const FAQPage = () => {
                   </div>
                 </button>
                 
-                <div className={`wings-faq-answer ${openFAQ === faq.id ? 'wings-open' : ''}`}>
+                <div 
+                  id={`faq-answer-${faq.id}`}
+                  className={`wings-faq-answer ${openFAQ === faq.id ? 'wings-open' : ''}`}
+                  role="region"
+                  aria-labelledby={`faq-question-${faq.id}`}
+                >
                   <div className="wings-answer-content">
                     <p>{faq.answer}</p>
                   </div>
@@ -289,7 +359,11 @@ const FAQPage = () => {
               Our team is here to help you with any additional questions about WINGS Senior Living.
             </p>
             <div className="wings-contact-methods">
-              <div className="wings-contact-method">
+              <button 
+                className="wings-contact-method"
+                onClick={handleCall}
+                aria-label="Call us"
+              >
                 <div className="wings-contact-icon">
                   <Phone size={24} />
                 </div>
@@ -297,8 +371,12 @@ const FAQPage = () => {
                   <h4>Call Us</h4>
                   <p>+91 85909 43300</p>
                 </div>
-              </div>
-              <div className="wings-contact-method">
+              </button>
+              <button 
+                className="wings-contact-method"
+                onClick={handleWhatsApp}
+                aria-label="Chat on WhatsApp"
+              >
                 <div className="wings-contact-icon">
                   <MessageCircle size={24} />
                 </div>
@@ -306,8 +384,12 @@ const FAQPage = () => {
                   <h4>WhatsApp</h4>
                   <p>Chat with us</p>
                 </div>
-              </div>
-              <div className="wings-contact-method">
+              </button>
+              <button 
+                className="wings-contact-method"
+                onClick={handleVisit}
+                aria-label="Visit us"
+              >
                 <div className="wings-contact-icon">
                   <MapPin size={24} />
                 </div>
@@ -315,7 +397,7 @@ const FAQPage = () => {
                   <h4>Visit Us</h4>
                   <p>PS Mission Hospital, Kochi</p>
                 </div>
-              </div>
+              </button>
             </div>
           </div>
         </div>

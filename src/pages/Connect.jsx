@@ -38,6 +38,14 @@ const Connect = () => {
     message: ''
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState('');
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   // Initialize AOS
   useEffect(() => {
     AOS.init({
@@ -100,7 +108,7 @@ const Connect = () => {
     {
       name: "WhatsApp",
       icon: FaWhatsapp,
-      url: "https://wa.me/918590943300",
+      url: "https://wa.me/918590943300?text=Hi! I'm interested in learning more about Wings Senior Living.",
       color: "#25D366"
     }
   ];
@@ -136,24 +144,94 @@ const Connect = () => {
       ...prev,
       [name]: value
     }));
+    
+    // Clear any previous submit message when user starts typing
+    if (submitMessage) {
+      setSubmitMessage('');
+    }
+  };
+
+  // Validate form
+  const validateForm = () => {
+    const { name, phone, email, message } = formData;
+    
+    if (!name.trim()) {
+      setSubmitMessage('Please enter your name');
+      return false;
+    }
+    
+    if (!phone.trim()) {
+      setSubmitMessage('Please enter your phone number');
+      return false;
+    }
+    
+    if (!email.trim()) {
+      setSubmitMessage('Please enter your email address');
+      return false;
+    }
+    
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setSubmitMessage('Please enter a valid email address');
+      return false;
+    }
+    
+    if (!message.trim()) {
+      setSubmitMessage('Please enter a message');
+      return false;
+    }
+    
+    return true;
   };
 
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Add form submission logic here
-    console.log('Form submitted:', formData);
     
-    // Reset form after submission
-    setFormData({
-      name: '',
-      phone: '',
-      email: '',
-      message: ''
-    });
+    if (!validateForm()) {
+      return;
+    }
     
-    // Show success message (you can implement a toast notification)
-    alert('Thank you for your message! We will get back to you soon.');
+    setIsSubmitting(true);
+    setSubmitMessage('');
+    
+    try {
+      // Simulate API call - replace with actual submission logic
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      // Reset form after successful submission
+      setFormData({
+        name: '',
+        phone: '',
+        email: '',
+        message: ''
+      });
+      
+      setSubmitMessage('Thank you for your message! We will get back to you within 24 hours.');
+      
+      // Clear success message after 5 seconds
+      setTimeout(() => {
+        setSubmitMessage('');
+      }, 5000);
+      
+    } catch (error) {
+      setSubmitMessage('Sorry, there was an error sending your message. Please try again or contact us directly.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  // Handle quick actions
+  const handleGetDirections = () => {
+    const address = encodeURIComponent("1st Floor, PS Mission Hospital, Maradu, Kochi 682 304");
+    window.open(`https://www.google.com/maps/search/?api=1&query=${address}`, '_blank');
+  };
+
+  const handleScheduleTour = () => {
+    // Create WhatsApp message for tour scheduling
+    const message = encodeURIComponent("Hi! I would like to schedule a tour of Wings Senior Living. Please let me know available times.");
+    window.open(`https://wa.me/918590943300?text=${message}`, '_blank');
   };
 
   return (
@@ -222,7 +300,7 @@ const Connect = () => {
                   <div className="contact-details">
                     <h3>{info.title}</h3>
                     {info.href ? (
-                      <a href={info.href} className="contact-link">
+                      <a href={info.href} className="contact-link" aria-label={`${info.title}: ${info.value}`}>
                         {info.value}
                       </a>
                     ) : (
@@ -254,7 +332,7 @@ const Connect = () => {
                 Fill out the form below and our team will get back to you within 24 hours.
               </p>
 
-              <form onSubmit={handleSubmit} className="contact-form">
+              <form onSubmit={handleSubmit} className="contact-form" noValidate>
                 <div className="form-row">
                   <div className="form-group">
                     <label htmlFor="name">
@@ -269,6 +347,7 @@ const Connect = () => {
                       onChange={handleInputChange}
                       placeholder="Your full name"
                       required
+                      disabled={isSubmitting}
                     />
                   </div>
                   <div className="form-group">
@@ -284,6 +363,7 @@ const Connect = () => {
                       onChange={handleInputChange}
                       placeholder="Your phone number"
                       required
+                      disabled={isSubmitting}
                     />
                   </div>
                 </div>
@@ -301,6 +381,7 @@ const Connect = () => {
                     onChange={handleInputChange}
                     placeholder="your.email@example.com"
                     required
+                    disabled={isSubmitting}
                   />
                 </div>
 
@@ -317,12 +398,28 @@ const Connect = () => {
                     placeholder="Tell us how we can help you..."
                     rows="5"
                     required
+                    disabled={isSubmitting}
                   ></textarea>
                 </div>
 
-                <button type="submit" className="submit-btn">
-                  <Send size={20} />
-                  Send Message
+                {submitMessage && (
+                  <div className={`submit-message ${submitMessage.includes('Thank you') ? 'success' : 'error'}`}>
+                    {submitMessage}
+                  </div>
+                )}
+
+                <button type="submit" className="submit-btn" disabled={isSubmitting}>
+                  {isSubmitting ? (
+                    <>
+                      <div className="loading-spinner"></div>
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      <Send size={20} />
+                      Send Message
+                    </>
+                  )}
                 </button>
               </form>
             </div>
@@ -354,7 +451,7 @@ const Connect = () => {
                   Wings Senior Living can be the perfect home for you or your loved one.
                 </p>
                 
-                <button className="schedule-btn">
+                <button className="schedule-btn" onClick={handleScheduleTour}>
                   <Calendar size={20} />
                   Schedule Tour
                   <ArrowRight size={16} />
@@ -394,6 +491,7 @@ const Connect = () => {
                   data-aos="zoom-in"
                   data-aos-duration="600"
                   data-aos-delay={index * 100}
+                  aria-label={`Follow us on ${social.name}`}
                 >
                   <IconComponent size={28} />
                   <span>{social.name}</span>
@@ -442,7 +540,7 @@ const Connect = () => {
         </div>
       </section>
 
-      {/* Map Section (Optional - you can add Google Maps integration) */}
+      {/* Map Section */}
       <section className="map-section">
         <div className="container">
           <div 
@@ -454,13 +552,12 @@ const Connect = () => {
             <div className="section-divider"></div>
             
             <div className="map-container">
-              {/* Replace with actual Google Maps embed */}
               <div className="map-placeholder">
                 <MapPin size={48} />
                 <h3>Wings Senior Living</h3>
                 <p>1st Floor, PS Mission Hospital</p>
                 <p>Maradu, Kochi 682 304</p>
-                <button className="directions-btn">
+                <button className="directions-btn" onClick={handleGetDirections}>
                   Get Directions
                   <ArrowRight size={16} />
                 </button>

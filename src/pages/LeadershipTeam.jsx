@@ -26,6 +26,11 @@ import drKunjumonImage from '../assets/hero.png';
 import vargheeseImage from '../assets/hero1.png';
 
 const LeadershipTeam = () => {
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   // Initialize AOS
   useEffect(() => {
     AOS.init({
@@ -319,18 +324,18 @@ const LeadershipTeam = () => {
             data-aos="fade-up"
             data-aos-duration="800"
           >
-            <h2 className="cta-titles">Explore Our Caring Community</h2>
-            <p className="cta-descriptions">
+            <h2 className="cta-title">Explore Our Caring Community</h2>
+            <p className="cta-description">
               Contact Us for Personalized Information about Wings Senior Living and 
               discover how our leadership team ensures exceptional care for every resident.
             </p>
             
-            <div className="cta-btn">
-              <button className="cta-btn primary">
+            <div className="cta-buttons">
+              <button className="cta-button primary">
                 Contact Us
                 <ArrowRight size={20} />
               </button>
-              <button className="cta-btn secondary">
+              <button className="cta-button secondary">
                 Schedule a Visit
               </button>
             </div>

@@ -19,9 +19,6 @@ import {
   Clock,
   CheckCircle
 } from 'lucide-react';
-// Remove AOS import completely
-// import AOS from 'aos';
-// import 'aos/dist/aos.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import './AboutUs.css';
@@ -37,10 +34,10 @@ import teamImage from '../assets/hero.png';
 const AboutUs = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
 
-  // Remove all AOS initialization
-  // useEffect(() => {
-  //   AOS.init({...});
-  // }, []);
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   // Testimonials data
   const testimonials = [
@@ -161,7 +158,7 @@ const AboutUs = () => {
     <div className="about-us-page">
       <Header />
 
-      {/* Banner Section - Remove all data-aos attributes */}
+      {/* Banner Section */}
       <section className="about-banner">
         <div className="banner-image-container">
           <img 
@@ -201,7 +198,7 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* Our Story Section - Remove all data-aos attributes */}
+      {/* Our Story Section */}
       <section className="our-story-section">
         <div className="container">
           <div className="story-header">
@@ -454,12 +451,12 @@ const AboutUs = () => {
               Schedule a visit today and experience the difference that comes with 25+ years of healthcare excellence.
             </p>
             
-            <div className="cta-butt">
-              <button className="cta-butt primary">
+            <div className="cta-buttons">
+              <button className="cta-button primary">
                 Schedule a Visit
                 <ArrowRight size={20} />
               </button>
-              <button className="cta-butt secondary">
+              <button className="cta-button secondary">
                 Download Brochure
               </button>
             </div>

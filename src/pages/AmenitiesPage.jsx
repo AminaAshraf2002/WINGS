@@ -28,6 +28,11 @@ import recreationImage from '../assets/social.png';
 import diningImage from '../assets/services.jpg';
 
 const AmenitiesPage = () => {
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   // Initialize animations
   useEffect(() => {
     const observer = new IntersectionObserver(

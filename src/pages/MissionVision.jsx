@@ -29,6 +29,11 @@ import visionImage from '../assets/Vission.jpeg';
 import valuesImage from '../assets/services.jpg';
 
 const MissionVision = () => {
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   // Initialize AOS
   useEffect(() => {
     AOS.init({
@@ -412,18 +417,18 @@ const MissionVision = () => {
             data-aos="fade-up"
             data-aos-duration="800"
           >
-            <h2 className="cta-titl">Explore Our Caring Community</h2>
-            <p className="cta-descriptio">
+            <h2 className="cta-title">Explore Our Caring Community</h2>
+            <p className="cta-description">
               Contact Us for Personalized Information about how our mission and vision 
               create an exceptional living experience at Wings Senior Living.
             </p>
             
-            <div className="cta-buttn">
-              <button className="cta-buttn primary">
+            <div className="cta-buttons">
+              <button className="cta-button primary">
                 Contact Us
                 <ArrowRight size={20} />
               </button>
-              <button className="cta-buttn secondary">
+              <button className="cta-button secondary">
                 Schedule a Visit
               </button>
             </div>

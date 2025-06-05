@@ -28,6 +28,11 @@ import hospitalImage from '../assets/medi.jpeg';
 import healthCareImage from '../assets/exercise.jpeg';
 
 const ServicesPage = () => {
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   // Initialize animations
   useEffect(() => {
     const observer = new IntersectionObserver(
