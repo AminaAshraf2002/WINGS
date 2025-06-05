@@ -1,0 +1,639 @@
+/* PrivacyPolicyPage.css */
+
+/* Import Poppins Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Base Styles */
+.wings-privacy-page {
+  min-height: 100vh;
+  background-color: #f9fafb;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Header Section */
+.wings-privacy-banner {
+  background: linear-gradient(135deg, #0d9488 0%, #059669 100%);
+  color: white;
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.wings-privacy-banner-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.wings-banner-icon {
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.wings-banner-icon svg {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 1rem;
+  border-radius: 50%;
+  backdrop-filter: blur(10px);
+}
+
+.wings-privacy-banner-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: white;
+}
+
+.wings-privacy-banner-description {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  opacity: 0.95;
+}
+
+.wings-privacy-highlight {
+  font-weight: 600;
+  color: #fbbf24;
+}
+
+.wings-last-updated {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  display: inline-block;
+  backdrop-filter: blur(10px);
+}
+
+.wings-last-updated p {
+  margin: 0;
+  font-size: 0.875rem;
+  opacity: 0.9;
+}
+
+/* Content */
+.wings-privacy-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 1rem;
+}
+
+/* Introduction Section */
+.wings-privacy-intro {
+  margin-bottom: 4rem;
+}
+
+.wings-intro-card {
+  background: white;
+  border-radius: 1rem;
+  padding: 3rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border-left: 4px solid #0d9488;
+}
+
+.wings-intro-card h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 1.5rem;
+}
+
+.wings-intro-card p {
+  color: #4b5563;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.wings-intro-card p:last-child {
+  margin-bottom: 0;
+}
+
+/* Main Sections */
+.wings-privacy-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.wings-privacy-section {
+  background: white;
+  border-radius: 1rem;
+  padding: 2.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.wings-privacy-section:hover {
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.wings-section-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #f3f4f6;
+}
+
+.wings-section-icon {
+  background: #f0fdfa;
+  color: #0d9488;
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wings-section-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+}
+
+.wings-section-content {
+  color: #4b5563;
+  line-height: 1.7;
+}
+
+.wings-content-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.wings-content-item {
+  position: relative;
+  padding-left: 2rem;
+  margin-bottom: 1rem;
+  line-height: 1.7;
+}
+
+.wings-content-item:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.75rem;
+  width: 8px;
+  height: 8px;
+  background: #0d9488;
+  border-radius: 50%;
+}
+
+.wings-content-item:last-child {
+  margin-bottom: 0;
+}
+
+/* Contact Section */
+.wings-privacy-contact {
+  margin-bottom: 3rem;
+}
+
+.wings-contact-card {
+  background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+  color: white;
+  border-radius: 1rem;
+  padding: 3rem;
+}
+
+.wings-contact-card h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: white;
+}
+
+.wings-contact-card p {
+  margin-bottom: 2rem;
+  opacity: 0.9;
+  line-height: 1.7;
+}
+
+.wings-contact-methods {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.wings-contact-method {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.wings-contact-method:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.wings-contact-method svg {
+  color: #fbbf24;
+  flex-shrink: 0;
+}
+
+.wings-contact-method span {
+  font-weight: 500;
+}
+
+/* Updates Section */
+.wings-privacy-updates {
+  margin-bottom: 2rem;
+}
+
+.wings-updates-card {
+  background: #fef3c7;
+  border: 1px solid #fcd34d;
+  border-radius: 1rem;
+  padding: 2.5rem;
+}
+
+.wings-updates-card h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #92400e;
+  margin-bottom: 1.5rem;
+}
+
+.wings-updates-card p {
+  color: #78350f;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.wings-updates-card p:last-child {
+  margin-bottom: 0;
+}
+
+/* Animation Classes */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+.animate-on-scroll.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .wings-privacy-content {
+    padding: 2rem 1rem;
+  }
+  
+  .wings-privacy-banner {
+    padding: 3rem 0;
+  }
+  
+  .wings-privacy-banner-title {
+    font-size: 2.5rem;
+  }
+  
+  .wings-privacy-banner-description {
+    font-size: 1rem;
+  }
+  
+  .wings-intro-card,
+  .wings-privacy-section,
+  .wings-contact-card,
+  .wings-updates-card {
+    padding: 2rem;
+  }
+  
+  .wings-section-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.75rem;
+  }
+  
+  .wings-section-title {
+    font-size: 1.25rem;
+  }
+  
+  .wings-contact-methods {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .wings-contact-method {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .wings-privacy-banner-title {
+    font-size: 2rem;
+  }
+  
+  .wings-intro-card,
+  .wings-privacy-section,
+  .wings-contact-card,
+  .wings-updates-card {
+    padding: 1.5rem;
+  }
+  
+  .wings-content-item {
+    padding-left: 1.5rem;
+    font-size: 0.95rem;
+  }
+  
+  .wings-section-title {
+    font-size: 1.125rem;
+  }
+  
+  .wings-contact-card h2,
+  .wings-updates-card h2 {
+    font-size: 1.375rem;
+  }
+  
+  .wings-intro-card h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Focus states for accessibility */
+.wings-privacy-section:focus,
+.wings-contact-card:focus,
+.wings-updates-card:focus {
+  outline: 2px solid #0d9488;
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .wings-privacy-section {
+    border: 2px solid #e5e7eb;
+  }
+  
+  .wings-content-item:before {
+    background: #1f2937;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .animate-on-scroll {
+    opacity: 1;
+    transform: none;
+  }
+  
+  .wings-privacy-section:hover {
+    transform: none;
+  }
+}
+
+/* Print styles */
+@media print {
+  .wings-privacy-banner {
+    background: white !important;
+    color: #000 !important;
+    padding: 2rem 0;
+  }
+  
+  .wings-privacy-banner-title,
+  .wings-contact-card h2,
+  .wings-updates-card h2 {
+    color: #000 !important;
+  }
+  
+  .wings-contact-card {
+    background: white !important;
+    color: #000 !important;
+    border: 2px solid #000;
+  }
+  
+  .wings-privacy-section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #0d9488, #059669);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #059669, #0d9488);
+}
+
+/* Loading states */
+.wings-privacy-loading {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}
+
+/* Enhanced hover effects for touch devices */
+@media (hover: hover) {
+  .wings-privacy-section:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  .wings-contact-method:hover {
+    transform: translateY(-4px);
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) {
+  .wings-privacy-section:hover {
+    transform: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .wings-contact-method:hover {
+    transform: none;
+    background: rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Landscape orientation optimizations */
+@media (orientation: landscape) and (max-height: 600px) {
+  .wings-privacy-banner-title {
+    font-size: 2rem;
+  }
+  
+  .wings-privacy-banner {
+    padding: 2rem 0;
+  }
+}
+
+/* Ultra-wide screen optimizations */
+@media (min-width: 1400px) {
+  .wings-privacy-content,
+  .wings-privacy-banner-content {
+    max-width: 1400px;
+  }
+}
+
+/* High resolution display optimizations */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .wings-section-icon svg,
+  .wings-contact-method svg {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Specific breakpoints for better responsive design */
+@media (min-width: 480px) and (max-width: 640px) {
+  .wings-contact-methods {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 1024px) {
+  .wings-contact-methods {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Performance optimizations */
+.wings-privacy-section {
+  will-change: transform;
+}
+
+.wings-contact-method {
+  will-change: transform;
+}
+
+/* Accessibility improvements */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Better responsive typography */
+@media (max-width: 320px) {
+  .wings-privacy-banner-title {
+    font-size: 1.75rem;
+  }
+  
+  .wings-section-title {
+    font-size: 1rem;
+  }
+  
+  .wings-content-item {
+    font-size: 0.875rem;
+    padding-left: 1.25rem;
+  }
+}
+
+/* Ensure proper z-index stacking */
+.wings-privacy-banner {
+  z-index: 3;
+}
+
+.wings-privacy-section {
+  z-index: 2;
+}
+
+.wings-contact-card,
+.wings-updates-card {
+  z-index: 1;
+}
+
+/* Fix for iOS Safari rounded corners */
+@supports (-webkit-appearance: none) {
+  .wings-privacy-section,
+  .wings-contact-card,
+  .wings-updates-card,
+  .wings-intro-card {
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+  }
+}
+
+/* Improved touch targets for mobile */
+@media (max-width: 768px) {
+  .wings-contact-method {
+    min-height: 60px;
+    padding: 1.5rem;
+  }
+}
+
+/* Dark mode support (if needed) */
+@media (prefers-color-scheme: dark) {
+  .wings-privacy-page {
+    background-color: #111827;
+  }
+  
+  .wings-intro-card,
+  .wings-privacy-section {
+    background-color: #1f2937;
+    color: #d1d5db;
+  }
+  
+  .wings-intro-card h2,
+  .wings-section-title {
+    color: #f9fafb;
+  }
+  
+  .wings-intro-card p,
+  .wings-section-content {
+    color: #d1d5db;
+  }
+  
+  .wings-updates-card {
+    background: #374151;
+    border-color: #4b5563;
+  }
+  
+  .wings-updates-card h2 {
+    color: #fbbf24;
+  }
+  
+  .wings-updates-card p {
+    color: #d1d5db;
+  }
+  
+  .wings-section-icon {
+    background: #374151;
+    color: #10b981;
+  }
+}

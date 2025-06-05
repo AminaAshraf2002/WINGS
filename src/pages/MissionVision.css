@@ -1,0 +1,971 @@
+/* Mission & Vision Page Styles - Complete CSS */
+.mission-vision-page {
+  min-height: 100vh;
+  background: white;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* Common Section Styles */
+.section-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: bold;
+  color: #14b8a6;
+  text-align: center;
+  margin-bottom: 32px;
+  line-height: 1.2;
+}
+
+.section-title.white {
+  color: white;
+}
+
+.section-subtitle {
+  font-size: 18px;
+  color: #6b7280;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 48px;
+  line-height: 1.6;
+}
+
+.section-subtitle.white {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.section-divider {
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #14b8a6, #f97316);
+  margin: 0 auto 24px;
+  border-radius: 2px;
+}
+
+.section-icon {
+  color: #14b8a6;
+  margin-bottom: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-icon.white {
+  color: #fbbf24;
+}
+
+/* Banner Section */
+.mv-banner {
+  position: relative;
+  height: 60vh;
+  min-height: 500px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.banner-image-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.banner-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 300ms ease;
+}
+
+.banner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(20, 184, 166, 0.4));
+}
+
+.banner-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.banner-text {
+  color: white;
+  max-width: 800px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.banner-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: bold;
+  margin-bottom: 24px;
+  line-height: 1.1;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.banner-subtitle {
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  line-height: 1.6;
+  opacity: 0.95;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Mission Section */
+.mission-section {
+  padding: 100px 0;
+  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+}
+
+.mission-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.section-header .section-title {
+  margin-bottom: 16px;
+}
+
+.mission-statement {
+  margin-bottom: 40px;
+}
+
+.lead-text {
+  font-size: 20px;
+  font-weight: 600;
+  color: #14b8a6;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.mission-statement p {
+  font-size: 16px;
+  color: #4b5563;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.mission-pillars h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 20px;
+}
+
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.pillar-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: white;
+  border-radius: 12px;
+  border: 1px solid rgba(20, 184, 166, 0.1);
+  transition: all 300ms ease;
+}
+
+.pillar-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(20, 184, 166, 0.15);
+}
+
+.pillar-icon {
+  color: #14b8a6;
+  flex-shrink: 0;
+}
+
+.pillar-item span {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1f2937;
+}
+
+.mission-visual {
+  position: relative;
+}
+
+.mission-image {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.25);
+  transition: all 300ms ease;
+}
+
+.mission-image:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 35px 80px -12px rgba(0, 0, 0, 0.35);
+}
+
+.mission-image img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  transition: transform 300ms ease;
+}
+
+.mission-image:hover img {
+  transform: scale(1.05);
+}
+
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(20, 184, 166, 0.8), rgba(249, 115, 22, 0.7));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+.mission-image:hover .image-overlay,
+.vision-image:hover .image-overlay {
+  opacity: 1;
+}
+
+.overlay-content {
+  text-align: center;
+  color: white;
+  padding: 30px;
+  transform: translateY(20px);
+  transition: transform 300ms ease;
+}
+
+.mission-image:hover .overlay-content,
+.vision-image:hover .overlay-content {
+  transform: translateY(0);
+}
+
+.overlay-content h3 {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 16px 0 8px;
+}
+
+.overlay-content p {
+  font-size: 16px;
+  opacity: 0.9;
+}
+
+/* Vision Section */
+.vision-section {
+  padding: 100px 0;
+  background: white;
+}
+
+.vision-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.vision-visual {
+  position: relative;
+}
+
+.vision-image {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.25);
+  transition: all 300ms ease;
+}
+
+.vision-image:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 35px 80px -12px rgba(0, 0, 0, 0.35);
+}
+
+.vision-image img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  transition: transform 300ms ease;
+}
+
+.vision-image:hover img {
+  transform: scale(1.05);
+}
+
+.vision-statement {
+  margin-bottom: 40px;
+}
+
+.vision-statement p {
+  font-size: 16px;
+  color: #4b5563;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.vision-goals h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 20px;
+}
+
+.goals-list {
+  display: grid;
+  gap: 12px;
+}
+
+.goal-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+}
+
+.goal-icon {
+  color: #14b8a6;
+  flex-shrink: 0;
+}
+
+.goal-item span {
+  font-size: 16px;
+  color: #4b5563;
+  font-weight: 500;
+}
+
+/* Core Values Section */
+.values-section {
+  padding: 100px 0;
+  background: linear-gradient(135deg, #14b8a6 0%, #0891b2 100%);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.values-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+  opacity: 0.3;
+}
+
+.values-header {
+  text-align: center;
+  margin-bottom: 80px;
+  position: relative;
+  z-index: 2;
+}
+
+.values-header .section-icon {
+  color: #fbbf24;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  position: relative;
+  z-index: 2;
+}
+
+.value-card {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 40px 30px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 300ms ease;
+}
+
+.value-card:hover {
+  transform: translateY(-8px);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.value-icon {
+  color: #fbbf24;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.value-card h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.value-card p {
+  font-size: 15px;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+/* Impact Areas Section */
+.impact-section {
+  padding: 100px 0;
+  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+}
+
+.impact-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.impact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.impact-card {
+  background: white;
+  padding: 40px 30px;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px -12px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(20, 184, 166, 0.1);
+  transition: all 300ms ease;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.impact-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.15);
+}
+
+.impact-icon {
+  color: #14b8a6;
+  background: rgba(20, 184, 166, 0.1);
+  padding: 12px;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.impact-content h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 8px;
+}
+
+.impact-content p {
+  font-size: 15px;
+  color: #6b7280;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.impact-stat {
+  font-size: 14px;
+  font-weight: 600;
+  color: #14b8a6;
+  background: rgba(20, 184, 166, 0.1);
+  padding: 6px 12px;
+  border-radius: 20px;
+  display: inline-block;
+}
+
+/* Journey Section */
+.journey-section {
+  padding: 100px 0;
+  background: white;
+}
+
+.journey-content {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.journey-content .section-icon {
+  margin-bottom: 30px;
+}
+
+.journey-text {
+  margin-top: 40px;
+}
+
+.journey-text p {
+  font-size: 18px;
+  color: #4b5563;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+/* CTA Section */
+.mv-cta-section {
+  padding: 100px 0;
+  background: linear-gradient(135deg, #ecfdf5 0%, #dbeafe 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.mv-cta-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -200px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(20, 184, 166, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.mv-cta-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -200px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.cta-content {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.cta-titl {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 600;
+  color: #14b8a6;
+  margin-bottom: 24px;
+}
+
+.cta-descriptio {
+  font-size: 18px;
+  color: #6b7280;
+  line-height: 1.6;
+  margin-bottom: 40px;
+}
+
+.cta-buttn {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.cta-buttn {
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 300ms ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.cta-buttn.primary {
+  background: linear-gradient(135deg, #14b8a6, #0891b2);
+  color: white;
+  box-shadow: 0 4px 15px rgba(20, 184, 166, 0.3);
+}
+
+.cta-buttn.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(20, 184, 166, 0.4);
+}
+
+.cta-buttn.secondary {
+  background: white;
+  color: #14b8a6;
+  border: 2px solid #14b8a6;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.cta-buttn.secondary:hover {
+  background: #14b8a6;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(20, 184, 166, 0.3);
+}
+
+.contact-info {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.contact-item svg {
+  color: #14b8a6;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .mission-content,
+  .vision-content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .pillars-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .values-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+
+  .impact-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .mv-banner {
+    height: 50vh;
+    min-height: 400px;
+  }
+
+  .mission-section,
+  .vision-section,
+  .values-section,
+  .impact-section,
+  .journey-section,
+  .mv-cta-section {
+    padding: 60px 0;
+  }
+
+  .mission-image img,
+  .vision-image img {
+    height: 400px;
+  }
+
+  .section-header {
+    margin-bottom: 30px;
+  }
+
+  .mission-pillars,
+  .vision-goals {
+    margin-bottom: 30px;
+  }
+
+  .pillars-grid {
+    gap: 12px;
+  }
+
+  .pillar-item {
+    padding: 12px;
+  }
+
+  .pillar-item span {
+    font-size: 13px;
+  }
+
+  .values-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .value-card {
+    padding: 30px 25px;
+  }
+
+  .impact-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+
+  .impact-icon {
+    align-self: center;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contact-info {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mission-section,
+  .vision-section,
+  .values-section,
+  .impact-section,
+  .journey-section,
+  .mv-cta-section {
+    padding: 50px 0;
+  }
+
+  .mission-image img,
+  .vision-image img {
+    height: 350px;
+  }
+
+  .pillar-item {
+    padding: 10px;
+  }
+
+  .pillar-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .value-card {
+    padding: 25px 20px;
+  }
+
+  .impact-card {
+    padding: 30px 20px;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .section-subtitle {
+    font-size: 16px;
+  }
+
+  .lead-text {
+    font-size: 18px;
+  }
+
+  .mission-statement p,
+  .vision-statement p {
+    font-size: 15px;
+  }
+
+  .cta-button {
+    padding: 12px 24px;
+    font-size: 15px;
+  }
+
+  .cta-title {
+    font-size: 1.8rem;
+  }
+
+  .cta-description {
+    font-size: 16px;
+  }
+}
+
+/* Loading States */
+.loading-skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Focus States for Accessibility */
+.cta-button:focus {
+  outline: 2px solid #14b8a6;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.pillar-item:focus,
+.value-card:focus,
+.impact-card:focus {
+  outline: 2px solid #14b8a6;
+  outline-offset: 2px;
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .banner-overlay {
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  .section-divider {
+    background: #14b8a6;
+  }
+
+  .image-overlay {
+    background: rgba(0, 0, 0, 0.9);
+  }
+
+  .value-card {
+    border: 2px solid rgba(255, 255, 255, 0.8);
+  }
+}
+
+/* Print Styles */
+@media print {
+  .mv-banner,
+  .mv-cta-section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .section-title {
+    color: #000 !important;
+  }
+
+  .section-title.white {
+    color: #000 !important;
+  }
+
+  .cta-button {
+    border: 2px solid #000;
+    background: transparent !important;
+    color: #000 !important;
+  }
+
+  .values-section {
+    background: #f9f9f9 !important;
+    color: #000 !important;
+  }
+
+  .value-card {
+    background: white !important;
+    color: #000 !important;
+    border: 1px solid #ccc;
+  }
+
+  .banner-overlay,
+  .image-overlay {
+    display: none;
+  }
+}
+
+/* Animation Support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .mission-image:hover,
+  .vision-image:hover,
+  .pillar-item:hover,
+  .value-card:hover,
+  .impact-card:hover {
+    transform: none;
+  }
+
+  .loading-skeleton {
+    animation: none;
+  }
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #14b8a6, #0891b2);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #0891b2, #14b8a6);
+}
+
+/* Selection Colors */
+::selection {
+  background: #14b8a6;
+  color: white;
+}
+
+::-moz-selection {
+  background: #14b8a6;
+  color: white;
+}
+
+/* Performance Optimizations */
+.mission-image img,
+.vision-image img,
+.banner-image {
+  will-change: transform;
+}
+
+.pillar-item,
+.value-card,
+.impact-card {
+  will-change: transform, box-shadow;
+}
+
+/* Ensure proper stacking contexts */
+.mv-banner {
+  z-index: 1;
+}
+
+.banner-content {
+  z-index: 2;
+}
+
+.values-section::before {
+  z-index: 1;
+}
+
+.values-header,
+.values-grid {
+  z-index: 2;
+}

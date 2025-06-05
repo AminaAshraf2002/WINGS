@@ -1,0 +1,521 @@
+/* AmenitiesPage.css */
+
+/* Import Poppins Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Base Styles */
+.amenities-page {
+  min-height: 100vh;
+  background-color: #f9fafb;
+  font-family: 'Poppins', sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Content Section */
+.amenities-content {
+  padding: 2rem 0;
+}
+
+/* Header Section */
+.amenities-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  background-color: white;
+  padding: 2rem 0;
+}
+
+.amenities-title {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #0d9488;
+  margin: 0;
+}
+
+/* Common Facilities Section */
+.common-facilities-section {
+  background-color: white;
+  padding: 3rem 0;
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #0d9488;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.facilities-description {
+  font-size: 1rem;
+  color: #4b5563;
+  line-height: 1.7;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 2rem;
+}
+
+.retirement-description {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.retirement-description p {
+  font-size: 0.95rem;
+  color: #6b7280;
+  font-style: italic;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Detailed Amenities Grid */
+.detailed-amenities-section {
+  padding: 3rem 0;
+}
+
+.amenities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.amenity-category {
+  background-color: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border-top: 4px solid var(--category-color);
+}
+
+.amenity-category:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.15);
+}
+
+.category-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.category-header h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+}
+
+.category-amenities {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.amenity-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  background-color: #f9fafb;
+  transition: all 0.3s ease;
+}
+
+.amenity-item:hover {
+  background-color: #f0fdfa;
+  transform: translateX(4px);
+}
+
+.amenity-item svg {
+  color: #0d9488;
+  flex-shrink: 0;
+}
+
+.amenity-item span {
+  font-size: 0.875rem;
+  color: #4b5563;
+  font-weight: 500;
+}
+
+/* Recreation Section */
+.recreation-section {
+  background-color: white;
+  padding: 4rem 0;
+  margin-bottom: 2rem;
+}
+
+.recreation-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.recreation-text .section-title {
+  text-align: left;
+  margin-bottom: 1.5rem;
+}
+
+.recreation-description {
+  font-size: 1rem;
+  color: #4b5563;
+  line-height: 1.7;
+}
+
+.recreation-image {
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.recreation-image img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.recreation-image:hover img {
+  transform: scale(1.05);
+}
+
+/* Dining Section */
+.dining-section {
+  background-color: #f8fafc;
+  padding: 4rem 0;
+  margin-bottom: 2rem;
+}
+
+.dining-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.dining-text .section-title {
+  text-align: left;
+  margin-bottom: 1.5rem;
+}
+
+.dining-description {
+  font-size: 1rem;
+  color: #4b5563;
+  line-height: 1.7;
+}
+
+.dining-image {
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.dining-image img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.dining-image:hover img {
+  transform: scale(1.05);
+}
+
+/* CTA Section */
+.amenities-cta-section {
+  background: linear-gradient(135deg, #0d9488 0%, #059669 100%);
+  color: white;
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.cta-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.amenities-cta-title {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.amenities-cta-description {
+  font-size: 1.125rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+  color: white;
+}
+
+.cta-bot-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.cta-bot {
+  background-color: white;
+  color: #0d9488;
+  padding: 1rem 2.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  min-width: 150px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.cta-bot:hover {
+  background-color: #f9fafb;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  color: #0f766e;
+}
+
+/* Animation Classes */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+.animate-on-scroll.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .recreation-content,
+  .dining-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .amenities-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .amenities-content {
+    padding: 1rem 0;
+  }
+  
+  .amenities-header {
+    padding: 1.5rem 0;
+    margin-bottom: 2rem;
+  }
+  
+  .amenities-title {
+    font-size: 2rem;
+  }
+  
+  .section-title {
+    font-size: 1.5rem;
+  }
+  
+  .common-facilities-section,
+  .recreation-section,
+  .dining-section {
+    padding: 2rem 0;
+    margin-bottom: 1rem;
+  }
+  
+  .amenity-category {
+    padding: 1.5rem;
+  }
+  
+  .recreation-image img,
+  .dining-image img {
+    height: 250px;
+  }
+  
+  .recreation-content,
+  .dining-content {
+    gap: 1.5rem;
+  }
+  
+  .recreation-text .section-title,
+  .dining-text .section-title {
+    text-align: center;
+  }
+  
+  .cta-title {
+    font-size: 1.75rem;
+  }
+  
+  .cta-description {
+    font-size: 1rem;
+  }
+  
+  .amenities-cta-section {
+    padding: 3rem 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .amenities-title {
+    font-size: 1.75rem;
+  }
+  
+  .section-title {
+    font-size: 1.375rem;
+  }
+  
+  .facilities-description,
+  .recreation-description,
+  .dining-description {
+    font-size: 0.95rem;
+  }
+  
+  .amenity-category {
+    padding: 1.25rem;
+  }
+  
+  .category-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+  
+  .category-header h3 {
+    font-size: 1.125rem;
+  }
+  
+  .amenity-item {
+    padding: 0.625rem;
+  }
+  
+  .amenity-item span {
+    font-size: 0.8rem;
+  }
+  
+  .recreation-image img,
+  .dining-image img {
+    height: 200px;
+  }
+  
+  .cta-title {
+    font-size: 1.5rem;
+  }
+  
+  .cta-button {
+    padding: 0.875rem 2rem;
+    font-size: 0.95rem;
+    min-width: 120px;
+  }
+}
+
+/* Focus states for accessibility */
+.cta-button:focus {
+  outline: 2px solid #0d9488;
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .amenity-category {
+    border: 2px solid var(--category-color);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .animate-on-scroll {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Print styles */
+@media print {
+  .amenities-cta-section {
+    display: none;
+  }
+  
+  .recreation-section,
+  .dining-section,
+  .common-facilities-section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  
+  .section-title,
+  .amenities-title {
+    color: #000 !important;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #0d9488, #059669);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #059669, #0d9488);
+}
+
+/* Enhanced hover effects */
+@media (hover: hover) {
+  .amenity-category:hover {
+    transform: translateY(-4px);
+  }
+  
+  .amenity-item:hover {
+    transform: translateX(4px);
+  }
+  
+  .recreation-image:hover img,
+  .dining-image:hover img {
+    transform: scale(1.05);
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) {
+  .amenity-category:hover {
+    transform: none;
+  }
+  
+  .amenity-item:hover {
+    transform: none;
+  }
+  
+  .recreation-image:hover img,
+  .dining-image:hover img {
+    transform: none;
+  }
+}
